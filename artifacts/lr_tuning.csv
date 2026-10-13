@@ -1,0 +1,6 @@
+lr,manual_steps_to_converge,standard_steps_to_converge,manual_final_objective,safe_lr_le_1_over_L
+0.1,931.0,931.0,0.6172073483467102,True
+0.3,310.0,310.0,0.6172073483467102,True
+1.0,91.0,94.0,0.6172073483467102,True
+3.0,31.0,32.0,0.6172073483467102,False
+10.0,inf,inf,0.8748118281364441,False

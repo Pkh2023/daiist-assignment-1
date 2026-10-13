@@ -1,0 +1,175 @@
+{
+  "split": {
+    "burn_in": {
+      "matches": 380,
+      "first_season": 2000,
+      "last_season": 2000
+    },
+    "train": {
+      "matches": 6750,
+      "first_season": 2001,
+      "last_season": 2018
+    },
+    "val": {
+      "matches": 1140,
+      "first_season": 2019,
+      "last_season": 2021
+    },
+    "test": {
+      "matches": 1540,
+      "first_season": 2022,
+      "last_season": 2026
+    }
+  },
+  "selection": {
+    "halflife_matches": 10.0,
+    "elo_k": 15.0,
+    "chosen_groups": [
+      "elo",
+      "shots_on_target"
+    ],
+    "chosen_columns": [
+      "elo_diff",
+      "sot_net_diff"
+    ],
+    "cv_log_loss_chosen": 0.6056190574188322,
+    "cv_log_loss_all_indicators": 0.6049633700485219
+  },
+  "C": 0.1,
+  "learning_rate": 1.0,
+  "curvature_bound_L": 0.4647548262894612,
+  "epochs": 3000,
+  "betting_threshold_from_val": 0.8,
+  "test_results": {
+    "scikit-learn LogisticRegression": {
+      "log_loss": 0.6152577684432368,
+      "brier": 0.21388775459777273,
+      "auc": 0.7098186547954746,
+      "accuracy_at_0.5": 0.6551948051948052,
+      "mean_predicted": 0.45874517712521823,
+      "actual_rate": 0.44545454545454544,
+      "bet_at_val_threshold": {
+        "threshold": 0.8,
+        "bets": 51,
+        "tp": 48,
+        "fp": 3,
+        "fn": 638,
+        "tn": 851,
+        "pnl_units": 4.22,
+        "roi": 0.08274509803921568,
+        "hit_rate": 0.9411764705882353
+      }
+    },
+    "Manual PyTorch loop": {
+      "log_loss": 0.6152577617844057,
+      "brier": 0.21388775135830962,
+      "auc": 0.7098186547954746,
+      "accuracy_at_0.5": 0.6551948051948052,
+      "mean_predicted": 0.45874517996880143,
+      "actual_rate": 0.44545454545454544,
+      "bet_at_val_threshold": {
+        "threshold": 0.8,
+        "bets": 51,
+        "tp": 48,
+        "fp": 3,
+        "fn": 638,
+        "tn": 851,
+        "pnl_units": 4.22,
+        "roi": 0.08274509803921568,
+        "hit_rate": 0.9411764705882353
+      }
+    },
+    "Standard PyTorch (nn.Module + optim)": {
+      "log_loss": 0.6152577603496436,
+      "brier": 0.2138877507497726,
+      "auc": 0.7098186547954746,
+      "accuracy_at_0.5": 0.6551948051948052,
+      "mean_predicted": 0.4587451803026261,
+      "actual_rate": 0.44545454545454544,
+      "bet_at_val_threshold": {
+        "threshold": 0.8,
+        "bets": 51,
+        "tp": 48,
+        "fp": 3,
+        "fn": 638,
+        "tn": 851,
+        "pnl_units": 4.22,
+        "roi": 0.08274509803921568,
+        "hit_rate": 0.9411764705882353
+      }
+    },
+    "Baseline: home-win rate of train+val": {
+      "log_loss": 0.6874921131081896,
+      "brier": 0.2471770722302029,
+      "auc": 0.5,
+      "accuracy_at_0.5": 0.5545454545454546,
+      "mean_predicted": 0.45779467680608377,
+      "actual_rate": 0.44545454545454544
+    },
+    "Benchmark: bookmaker (Bet365, margin removed)": {
+      "log_loss": 0.6031396789399542,
+      "brier": 0.2087133700361613,
+      "auc": 0.7265270276728959,
+      "accuracy_at_0.5": 0.6662337662337663,
+      "mean_predicted": 0.4422530955663469,
+      "actual_rate": 0.44545454545454544,
+      "bet_at_val_threshold": {
+        "threshold": 0.8,
+        "bets": 49,
+        "tp": 44,
+        "fp": 5,
+        "fn": 642,
+        "tn": 849,
+        "pnl_units": 1.0899999999999999,
+        "roi": 0.02224489795918367,
+        "hit_rate": 0.8979591836734694
+      }
+    }
+  },
+  "agreement": {
+    "coefficients": {
+      "elo_diff": {
+        "sklearn": 0.5380454161517194,
+        "manual": 0.538044810295105,
+        "standard": 0.5380447506904602
+      },
+      "sot_net_diff": {
+        "sklearn": 0.35022687235428523,
+        "manual": 0.350227415561676,
+        "standard": 0.3502274751663208
+      }
+    },
+    "intercepts": {
+      "sklearn": -0.1966018446515547,
+      "manual": -0.19660182297229767,
+      "standard": -0.19660182297229767
+    },
+    "max_abs_coef_diff_manual_vs_sklearn": 6.058566144329092e-07,
+    "max_abs_coef_diff_standard_vs_sklearn": 6.654612592082998e-07,
+    "max_abs_prob_diff_manual_vs_sklearn": 2.1839187841488084e-07,
+    "max_abs_prob_diff_standard_vs_sklearn": 2.4819420080257615e-07,
+    "max_abs_prob_diff_manual_vs_standard": 1.1920928955078125e-07,
+    "final_objective": {
+      "sklearn": 0.615777312332933,
+      "manual": 0.615777313709259,
+      "standard": 0.6157773121228236
+    }
+  },
+  "betting_check": {
+    "test_bets": 51,
+    "test_pnl": 4.22,
+    "bootstrap_95ci_pnl": [
+      -0.09000000000000119,
+      7.570249999999996
+    ],
+    "bootstrap_share_positive": 0.973
+  },
+  "data_quality": {
+    "team_name_fixed": "Nottm Forest -> Nott'm Forest",
+    "seasons_with_missing_matches": {
+      "2003": 335,
+      "2004": 335
+    },
+    "matches_without_odds": 83
+  }
+}
